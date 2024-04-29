@@ -1,2 +1,10 @@
 onadata
 pandas
+networkx
+flake8
+autopep8
+cdlib
+pyclustering
+matplotlib
+igraph
+leidenalg

@@ -1,5 +1,7 @@
 Após estudar e analisar o Capítulo 7 (Components, Communities and Cliques), deve-se resolver e enviar (códigos e respostas) aos exercícios, do item 7.5.2 (Data exercises): 4, 5, 6, 7, 8, 9, 10, 11, 12 e 13.
 
+Exercícios:
+
 4. Determine the connected components of this network and reduce the network to its largest connected component.
 
 5. Use the Louvain algorithm to determine a vertex partition/community structure with optimal modularity in this network.
