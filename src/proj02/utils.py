@@ -8,3 +8,16 @@ def read_data(file, start_line, end_line):
             elif i > end_line:
                 break
     return rows
+
+def define_projects_structure(project_list):
+    projects = []
+    for project in project_list:
+        project = {
+            'project_code': project[0],
+            'slots': int(project[1]),
+            'min_grade': int(project[2]),
+            'students': []
+        }
+        projects.append(project)
+    return projects
+
