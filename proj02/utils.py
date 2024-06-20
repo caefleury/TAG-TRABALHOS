@@ -9,7 +9,7 @@ def read_data(file, start_line, end_line):
                 break
     return rows
 
-def define_projects_structure(project_list):
+def define_project_structure(project_list):
     projects = []
     for project in project_list:
         project = {
@@ -21,3 +21,13 @@ def define_projects_structure(project_list):
         projects.append(project)
     return projects
 
+def define_student_structure(student_list):
+    students = []
+    for student in student_list:
+        student = {
+            'student_code': student[0],
+            'preferences': student[1:-1],
+            'grade': int(student[-1])
+        }
+        students.append(student)
+    return students

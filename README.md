@@ -1,2 +1,2 @@
 # TAG-TRABALHOS
-Repositório dos trabalhos da matéria de Teoria e Análise de grafos
+Repositório dos trabalhos da matéria de Teoria e Análise de Grafos
