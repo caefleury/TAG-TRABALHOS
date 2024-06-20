@@ -14,6 +14,8 @@ class TestDataStructure():
         test_file = 'proj02/entradaproj2TAG.txt'
         assert read_students(test_file, 62, 62) == [['A1', ['P1', 'P30', 'P50'],'5']]
         assert read_students(test_file, 62, 63) == [['A1', ['P1', 'P30', 'P50'],'5'],['A2', ['P1', 'P30', 'P51'],'5']]
+        assert read_students(test_file, 71, 71) == [['A10', ['P8', 'P43', 'P10'],'4']]
+        assert read_students(test_file, 161, 161) == [['A100', ['P38', 'P3', 'P20'],'3']]
         
 
     def test_define_project_structure(self):
@@ -39,11 +41,13 @@ class TestDataStructure():
             {
                 'student_code': 'A1',
                 'preferences': ['P1','P30','P50'],
-                'grade': 5
+                'grade': 5,
+                'project': ''
             },
             {
                 'student_code': 'A2',
                 'preferences': ['P1','P30','P51'],
-                'grade': 5
+                'grade': 5,
+                'project': ''
             }
         ]
