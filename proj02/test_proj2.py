@@ -1,15 +1,20 @@
-from utils import read_data,define_project_structure,define_student_structure
+from utils import read_projects,read_students,define_project_structure,define_student_structure
 
 
 class TestDataStructure():
-
-    def test_data_read(self):
+    def test_read_projects(self):
         test_file = 'proj02/entradaproj2TAG.txt'
-        assert read_data(test_file, 4, 4) == [['P1', '3', '5']]
-        assert read_data(test_file, 4, 5) == [
+        assert read_projects(test_file, 4, 4) == [['P1', '3', '5']]
+        assert read_projects(test_file, 4, 5) == [
             ['P1', '3', '5'], ['P2', '1', '5']]
-        assert read_data(test_file, 4, 6) == [['P1', '3', '5'], [
+        assert read_projects(test_file, 4, 6) == [['P1', '3', '5'], [
             'P2', '1', '5'], ['P3', '2', '4']]
+        
+    def test_read_students(self):
+        test_file = 'proj02/entradaproj2TAG.txt'
+        assert read_students(test_file, 62, 62) == [['A1', ['P1', 'P30', 'P50'],'5']]
+        assert read_students(test_file, 62, 63) == [['A1', ['P1', 'P30', 'P50'],'5'],['A2', ['P1', 'P30', 'P51'],'5']]
+        
 
     def test_define_project_structure(self):
         test_data = [['P1', '3', '5'],['P2', '2', '5']]
@@ -29,7 +34,7 @@ class TestDataStructure():
         ]
 
     def test_define_student_structure(self):
-        test_data = [['A1', 'P1', 'P30', 'P50','5'],['A2', 'P1', 'P30', 'P51','5']]
+        test_data = ['A1', ['P1', 'P30', 'P50'],'5'],['A2', ['P1', 'P30', 'P51'],'5']
         assert define_student_structure(test_data) == [
             {
                 'student_code': 'A1',
