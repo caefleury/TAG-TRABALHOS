@@ -70,9 +70,9 @@ def extract_student_code(item):
 
 
 def print_matchings(student_list, assigned_students, maximal=False):
-    print('Tabela dos emparelhamentos:')
     sorted_students = sorted(student_list, key=extract_student_code)
     if maximal == False:
+        print('Tabela dos emparelhamentos:')
         for student in sorted_students:
             student_code = student['student_code']
             project_code = student['project']
