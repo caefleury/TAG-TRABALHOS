@@ -40,6 +40,7 @@ def gale_shapley(student_list,project_list):
                 project_code = project['project_code']
                 min_grade = project['min_grade']
                 if project_code in student_preferences and student_grade >= min_grade:
+                    
                     # Se houver espaço no projeto  
                         # Criar emparelhamento
                     if len(project['students']) < project['slots']:
@@ -53,7 +54,6 @@ def gale_shapley(student_list,project_list):
                         student_preference_index = student_preferences.index(project_code)
                         least_interested_student = student_code
                         
-                        least_interested_student_index = student_preference_index
                         for applicant_code in project['students']:
                             current_applicant = dict()
 
@@ -66,7 +66,7 @@ def gale_shapley(student_list,project_list):
                             applicant_project_index = applicant_preferences.index(project_code)
                             applicant_grade = current_applicant['grade']
 
-                            # Se a preferência de um aluno no projeto for menor(index da preferencia) que a preferência do estudante atual
+                            # Se a preferência de um aluno no projeto for menor(maior index da preferencia) que a preferência do estudante atual
                             if applicant_project_index > student_preference_index:
                                 least_interested_student = applicant_code
 
@@ -77,7 +77,7 @@ def gale_shapley(student_list,project_list):
                                     least_interested_student = applicant_code
 
                         # Se dentre os alunos no projeto e o estudante atual, o estudante atual tiver uma preferência maior 
-                            # Tirar alunos menos interessados da lista de estudantes do projeto
+                            # Tirar aluno  menos interessados da lista de estudantes do projeto
                             # Tirar projeto do aluno
                             # Atualizar lista de estudantes com projeto
                         if least_interested_student != student_code:
@@ -123,7 +123,7 @@ def gale_shapley(student_list,project_list):
         else: 
             print("\033[1;32m" + f"{student_code} ---------------- {project_code}"+ "\033[0m")
     print("\033[1;32m" + f"Quantidade máxima de emparelhamentos:  {len(maximal_assigned_students)}"+ "\033[0m")
-    print(f"Emparelhamentos: {matching_sizes}")
+    
 
     return maximal_assigned_students
 
