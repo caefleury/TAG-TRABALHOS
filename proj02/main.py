@@ -1,6 +1,7 @@
 from utils import read_projects,read_students,define_project_structure,define_student_structure
 import random
 
+# Extração de dados
 data_file = 'proj02/entradaproj2TAG.txt'
 student_data = read_students(data_file, 62, 261)
 project_data = read_projects(data_file, 4, 58)
@@ -9,11 +10,11 @@ project_data = read_projects(data_file, 4, 58)
 student_structured_data = define_student_structure(student_data)
 project_structured_data = define_project_structure(project_data)
 
-# print(student_list[0:3])
-# print('--------------------------')
-# print(project_list[0:3])
+# Função que extrai o inteiro do código do estudante para ajudar com a ordenação
+def extract_student_code(item):
+    return int(item['student_code'][1:])
 
-
+# Algoritmo de Gale-Shapley
 def gale_shapley(student_list,project_list):
     assigned_students = []
     maximal_assigned_students = []
@@ -24,6 +25,8 @@ def gale_shapley(student_list,project_list):
             student_preferences = student['preferences']
             student_code = student['student_code']
             student_grade = student['grade']
+
+            # Sai da iteração do estudante se ele ja estiver emparelhado 
             if assigned_students:
                 student_already_assigned = False
                 for st in assigned_students:
@@ -32,6 +35,7 @@ def gale_shapley(student_list,project_list):
                         break
                 if student_already_assigned:
                     break
+            
             for project in project_list:
                 project_code = project['project_code']
                 min_grade = project['min_grade']
@@ -52,9 +56,12 @@ def gale_shapley(student_list,project_list):
                         least_interested_student_index = student_preference_index
                         for applicant_code in project['students']:
                             current_applicant = dict()
+
+                            # Extrai as informações do aluno selecionado de dentro do projeto
                             for applicant in student_list:
                                 if applicant['student_code'] == applicant_code:
                                     current_applicant = applicant
+                            
                             applicant_preferences = current_applicant['preferences']
                             applicant_project_index = applicant_preferences.index(project_code)
                             applicant_grade = current_applicant['grade']
@@ -84,30 +91,42 @@ def gale_shapley(student_list,project_list):
                                     break
                             break
 
-        largest_matching_size = len(maximal_assigned_students)
+        # Exibe os emparelhamentos da iteração atual
         print('Tabela dos emparelhamentos -> Número de emparelhamentos')
-        for student in assigned_students:
-            print(f"{student[0]} ------------------ {student[1]}")
+        sorted_students = sorted(student_list, key=extract_student_code)
+        for student in sorted_students:
+            student_code = student['student_code']
+            project_code = student['project']
+            if len(student_code) == 2:
+                print(f"{student_code}   ---------------- {project_code}")
+            elif len(student_code) == 3: 
+                print(f"{student_code}  ---------------- {project_code}")
+            else: 
+                print(f"{student_code} ---------------- {project_code}")
         print(f"Emparelhamentos: {len(assigned_students)}")
-        if len(assigned_students) >= largest_matching_size:
+        
+        if len(assigned_students) > len(maximal_assigned_students):
             matching_sizes.append(len(assigned_students))
             maximal_assigned_students = assigned_students
 
+    # Exibe o maior emparelhamento
     print("\033[1;32m" + "======================================" + "\033[0m")
     print("\033[1;32m" + "Emparelhamento máximo:"+ "\033[0m")
-    for student in maximal_assigned_students:
-        print("\033[1;32m" + f"{student[0]} ------------------ {student[1]}"+ "\033[0m")
-    print("\033[1;32m" + f"Emparelhamentos:  {largest_matching_size}"+ "\033[0m")
+    sorted_students = sorted(student_list, key=extract_student_code)
+    for student in sorted_students:
+        student_code = student['student_code']
+        project_code = student['project']
+        if len(student_code) == 2:
+            print("\033[1;32m" + f"{student_code}   ---------------- {project_code}"+ "\033[0m")
+        elif len(student_code) == 3: 
+            print("\033[1;32m" + f"{student_code}  ---------------- {project_code}"+ "\033[0m")
+        else: 
+            print("\033[1;32m" + f"{student_code} ---------------- {project_code}"+ "\033[0m")
+    print("\033[1;32m" + f"Quantidade máxima de emparelhamentos:  {len(maximal_assigned_students)}"+ "\033[0m")
     print(f"Emparelhamentos: {matching_sizes}")
 
     return maximal_assigned_students
 
-student_test = [{'student_code': 'A1', 'preferences': ['P1', 'P30', 'P50'], 'grade': 5, 'project': ''},
-                        {'student_code': 'A2', 'preferences': ['P2', 'P30', 'P51'], 'grade': 5, 'project': ''},
-                        {'student_code': 'A3', 'preferences': ['P3', 'P34', 'P35'], 'grade': 3, 'project': ''}]
-project_test = [{'project_code': 'P1', 'slots': 3, 'min_grade': 5, 'students': []},
-                {'project_code': 'P2', 'slots': 1, 'min_grade': 5, 'students': []},
-                {'project_code': 'P3', 'slots': 2, 'min_grade': 3, 'students': []}]
 
 gale_shapley(student_structured_data,project_structured_data)
 
