@@ -31,3 +31,5 @@ elif applicant_project_index == student_preference_index:
     if applicant_grade < student_grade:
         least_interested_student = applicant_code
 ```
+
+O número de iterações afeta significativamente o resultado máximo do algoritmo. 10 iterações tem resultados entre 49-52 enquanto que 100 iterações possuem resultados entre 52-54. Isso se da pela função que embaralha a lista de alunos antes de cada ireração. Começar a iteraçao por alunos diferentes ajuda o algoritmo a encontrar alunos que deixam o emparelhamento estável maior.
