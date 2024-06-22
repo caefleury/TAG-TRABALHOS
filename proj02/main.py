@@ -2,7 +2,7 @@ from utils import read_projects, read_students, define_project_structure, define
 import random
 
 # Extração de dados
-data_file = 'proj02/entradaproj2TAG.txt'
+data_file = 'entradaproj2TAG.txt'
 student_data = read_students(data_file, 62, 261)
 project_data = read_projects(data_file, 4, 58)
 
