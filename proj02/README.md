@@ -1,5 +1,13 @@
 # Projeto 2 - Teoria e Análise de Grafos
 
+## Como rodar o projeto:
+
+Dentro da pasta do projeto 2 (proj2) rode o código abaixo:
+
+```
+python3 main.py
+```
+
 ## Algoritmo Gale-Shapley
 
 A lógica utilizada no algoritmo de Gale-shapley no projeto foi a seguinte:
