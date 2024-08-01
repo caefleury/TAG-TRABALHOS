@@ -1,48 +1,39 @@
 import networkx as nx
-from dados import vertices,edges
 import matplotlib.pyplot as plt
+from grafo import vertices, arestas, grafo
+from algoritmo import coloracao_grafo
 
-# Criar o grafo
-grafo = nx.Graph()
+def main():
+    cores = coloracao_grafo(grafo)[0]
+    rodadas = coloracao_grafo(grafo)[1]
 
-# Adicionar vértices para cada jogo
-for vertice in vertices:
-    grafo.add_node(vertice)
+    # Exibir o número total de rodadas
+    print('----------------------------------------------')
+    print("\033[1;32m" +
+        f'\nNúmero de vértices (jogos): {len(vertices)}' + "\033[0m")
+    print("\033[1;32m" + f'Número de arestas: {len(arestas)}' + "\033[0m")
+    print("\033[1;32m" + f'Número de rodadas: {len(rodadas)}' + "\033[0m")
 
-# Adicionar arestas
-grafo.add_edges_from(edges)
+    plt.figure(figsize=(15,10)) 
 
-# Exibir o grafo
-#print("Vértices:", grafo.nodes())
-#print("Arestas:", grafo.edges())
+    # Todos os vertices em cinza
+    pos = nx.spring_layout(grafo)
+    # Define a cor dos nós como cinza
+    nx.draw_networkx_nodes(grafo, pos, node_color='gray')
+    nx.draw_networkx_edges(grafo, pos, edge_color='gray', alpha=0.5)
+    plt.title("Visualização sem coloração")
+    plt.show()
 
-# Utilizar o algoritmo de coloração de grafos do NetworkX
-coloracao = nx.coloring.greedy_color(grafo, strategy="largest_first")
-num_rodadas = len(set(coloracao.values()))
 
-#print(coloracao)
-print(num_rodadas)
-#print(coloracao)
-# Atribuir as cores aos times
-# for time in times:
-#     time["cor"] = coloracao[time["sigla"]]
+    plt.clf()  
 
-# Exibir a coloração
-# for time in times:
-#     print(f"Time: {time['nome']}, Rodada: {time['cor']}")
+    cmap_maior = plt.cm.get_cmap('tab20', 20)
+    # Vértices com coloração
+    nx.draw_networkx_nodes(grafo, pos, node_color=[
+                        cores[v] for v in grafo.nodes()], cmap=cmap_maior)
+    nx.draw_networkx_edges(grafo, pos, edge_color='gray', alpha=0.5)
+    plt.title("Visualização com coloração")
+    plt.show()
 
-# Apply a graph coloring algorithm
-color_map = nx.coloring.greedy_color(grafo, strategy="largest_first")
-
-# Extract the colors for each node
-colors = [color_map[node] for node in grafo.nodes()]
-
-# Define a color palette (you can customize this)
-color_palette = plt.cm.get_cmap('tab20', max(colors) + 1)
-
-# Draw the graph
-pos = nx.spring_layout(grafo)  # Position nodes using Fruchterman-Reingold force-directed algorithm
-nx.draw(grafo, pos, with_labels=True, node_color=colors, node_size=800, cmap=color_palette, edge_color='gray', font_weight='bold')
-
-# Show the plot
-plt.show()
+if __name__ == '__main__':
+    main()
