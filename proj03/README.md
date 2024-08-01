@@ -1,5 +1,7 @@
 # Projeto 3 - Teoria e Análise de Grafos
 
+Caetano Korilo Fleury de Amorim - 212006737
+
 ## Como Executar o Projeto
 
 Primeiro, crie um ambiente virtual e instale os pacotes necessários com o seguinte comando:
