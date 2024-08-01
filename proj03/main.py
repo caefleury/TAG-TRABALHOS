@@ -30,7 +30,7 @@ def main():
     cmap_maior = plt.cm.get_cmap('tab20', 20)
     # Vértices com coloração
     nx.draw_networkx_nodes(grafo, pos, node_color=[
-                        cores[v] for v in grafo.nodes()], cmap=cmap_maior)
+                        cores[v] for v in grafo.nodes()], cmap=cmap_maior )
     nx.draw_networkx_edges(grafo, pos, edge_color='gray', alpha=0.5)
     plt.title("Visualização com coloração")
     plt.show()
