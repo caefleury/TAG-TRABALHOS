@@ -39,6 +39,9 @@ No contexto deste projeto, cada vértice representa um jogo, e um vértice é ad
 
 #### Não foi possivel exibir um grafo com mais de 20 cores devido a restrição da própria bilbioteca
 
+![Grafo Cinza](/assets/gray.png)
+![Grafo Colorido](/assets/colored.png)
+
 ### grafo.py
 
 Contém os grafo do grafo do projeto (vértices e arestas).
