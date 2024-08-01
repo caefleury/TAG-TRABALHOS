@@ -49,13 +49,13 @@ Contém o algoritmo de coloração.
 
 ### Pacotes python
 
-networkx
-matplotlib
+- networkx
+- matplotlib
 
 ### Ferramenta de teste
 
-pytest
+- pytest
 
 ### Ferramenta de documentação
 
-phind.ai
+- phind.ai
